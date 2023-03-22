@@ -40,6 +40,7 @@ def alpaca_talk(text):
     response = []
     for s in generation_output.sequences:
         print(tokenizer.decode(s))
+        response.append(tokenizer.decode(s))
     r = ''.join(response)
     #print(r)
     #return r[r.index('Response:\n')+10:]
@@ -51,11 +52,15 @@ def index():
 
 @app.route('/ask', methods=['POST'])
 def ask():
+    base_input = "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n"
+
     input_text = json.loads(request.data)
     if (input_text['input']):
-        res = alpaca_talk(input_text['input'])
+        res = alpaca_talk(base_input + input_text['input'])
         
-    return jsonify(result=res)
+        return jsonify(prompt=res.split('\n')[1], result=res.split('\n')[2])
+    else:
+        return jsonify(error="No input field was specified.")
 
 if __name__ == '__main__':
 	app.run()
