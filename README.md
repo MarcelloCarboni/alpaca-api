@@ -13,4 +13,7 @@ To prompt the language model, send a json POST request to the /ask endpoint, inc
 {"input":"<your prompt>"}
 ```
 
-A quick command to test it is curl -H "Content-Type: application/json" -X POST -d "{\"input\":\"What are Large Language Models?\"}" <your_ngrok_link>/ask
+A quick command to test it is 
+```
+curl -H "Content-Type: application/json" -X POST -d "{\"input\":\"What are Large Language Models?\"}" <your_ngrok_link>/ask
+```
