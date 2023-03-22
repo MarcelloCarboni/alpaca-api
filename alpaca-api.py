@@ -50,11 +50,10 @@ def index():
 @app.route('/ask', methods=['POST'])
 def ask():
     input_text = json.loads(request.data)
-    res = {}
     if (input_text['input']):
-        res['result'] = alpaca_talk(input_text['input'])
+        res = alpaca_talk(input_text['input'])
         
-    return jsonify(res)
+    return jsonify(result=res)
 
 if __name__ == '__main__':
 	app.run()
