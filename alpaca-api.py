@@ -41,8 +41,9 @@ def alpaca_talk(text):
     for s in generation_output.sequences:
         print(tokenizer.decode(s))
     r = ''.join(response)
-    print(r)
-    return r[r.index('Response:\n')+10:]
+    #print(r)
+    #return r[r.index('Response:\n')+10:]
+    return r
 
 @app.route('/')
 def index():
