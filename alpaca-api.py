@@ -1,7 +1,7 @@
 from peft import PeftModel
 from transformers import LLaMATokenizer, LLaMAForCausalLM, GenerationConfig
 import textwrap
-
+import re
 import flask
 from IPython import get_ipython
 import json
@@ -44,7 +44,13 @@ def alpaca_talk(text):
     r = ''.join(response)
     #print(r)
     #return r[r.index('Response:\n')+10:]
-    return r
+    return clean_output(r)
+
+def clean_output(r):
+	rclean = re.sub('### Response:\n', '', r)
+	rclean = re.sub('### Response:\n', '', rclean)
+	
+	return rclean
 
 @app.route('/')
 def index():
