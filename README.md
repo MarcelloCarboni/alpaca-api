@@ -1,7 +1,7 @@
 # alpaca-api
 
 ## What is it
-This is a simple API that prompts a LLaMA ([Meta's LLaMa 7B](https://huggingface.co/decapoda-research/llama-7b-hf)) and gives back the response.
+This is a simple API that prompts [Stanford's Alpaca7B](https://github.com/tatsu-lab/stanford_alpaca), a fine-tuned version of [Meta's LLaMa 7B](https://huggingface.co/decapoda-research/llama-7b-hf), and gives back the response.
 It's designed to run on Colab.
 
 ## How to use it
