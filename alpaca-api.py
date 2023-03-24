@@ -42,14 +42,15 @@ def alpaca_talk(text):
         print(tokenizer.decode(s))
         response.append(tokenizer.decode(s))
     r = ''.join(response)
-    #print(r)
     #return r[r.index('Response:\n')+10:]
-    return clean_output(r)
+    return clean_output(r, text)
 
-def clean_output(r):
-	rclean = re.sub('### Response:\n', '', r)
-	rclean = re.sub('### Response:\n', '', rclean)
-	
+def clean_output(r, text):
+	rclean = re.sub('\n### Response:\n', '', r)
+	rclean = rclean.strip()
+	rclean = rclean.removeprefix(text.strip())
+	# print('prefix: ', text, ' response: ', rclean)
+
 	return rclean
 
 @app.route('/')
@@ -64,7 +65,8 @@ def ask():
     if (input_text['input']):
         res = alpaca_talk(base_input + input_text['input'])
         
-        return jsonify(prompt=res.split('\n')[1], result=res.split('\n')[2])
+        return jsonify(prompt=input_text['input'], result=res)
+        #return jsonify(prompt=res.split('\n')[1], result=res.split('\n')[2])
     else:
         return jsonify(error="No input field was specified.")
 
