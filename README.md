@@ -17,3 +17,5 @@ A quick command to test it is
 ```
 curl -H "Content-Type: application/json" -X POST -d "{\"input\":\"What are Large Language Models?\"}" <your_ngrok_link>/ask
 ```
+
+I also included a **very** simple web app to prompt the LLM, just run it using `python3 webapp.py`. Don't forget to change the ngrok link with the one you generated. 
