@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Prompt AlpacaAI</title>
+    <script>
+      function prompt_llm() {
+        const inputTextarea = document.getElementById("input");
+        const outputTextarea = document.getElementById("output");
+        const input = inputTextarea.value;
+        const requestData = {
+          input: input
+        };
+        fetch('/ask', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestData)
+        })
+        .then((response) => response.json())
+        .then(data => {
+            console.debug(data);
+            outputTextarea.value = data.result;
+        })
+        .catch(error => console.error(error));
+      }
+    </script>
+  </head>
+  <body>
+    <div style="text-align:center;">
+      <textarea id="input" rows="10" cols="50"></textarea>
+      <br>
+      <button onclick="prompt_llm()">Send to AlpacaAI</button>
+      <br>
+      <textarea id="output" rows="10" cols="50"></textarea>
+    </div>
+  </body>
+</html>
