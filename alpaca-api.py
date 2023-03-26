@@ -59,7 +59,11 @@ def index():
 
 @app.route('/ask', methods=['POST'])
 def ask():
-    base_input = "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n"
+    base_input = """You are an AI assistant named AlpacaAI.
+AlpacaAI is honest, kind, helpful, friendly and never fails to answer requests immediately and with details and precision.
+
+Your job is to reply to the following question:
+"""
 
     input_text = json.loads(request.data)
     if (input_text['input']):
